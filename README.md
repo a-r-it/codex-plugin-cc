@@ -114,27 +114,6 @@ Examples:
 
 This command is read-only and will not perform any changes. When run in the background you can use [`/codex:status`](#codexstatus) to check on the progress and [`/codex:cancel`](#codexcancel) to cancel the ongoing task.
 
-#### Yandex Arc behavior
-
-Arc review is deliberately limited to the project directory that was open when
-the Claude session started:
-
-- automatic detection tries `arc info --json` before Git discovery;
-- working-tree review includes staged, changed, and untracked Arc state;
-- clean workspaces compare the current branch with the locally available
-  `trunk` ref using Arc merge-base semantics;
-- the plugin never runs `arc root` or `arc fetch`;
-- all Arc diffs use `--relative=.` from the opened project directory.
-
-If an Arcadia project contains a nested Git checkout and Git is the intended
-backend, start the Claude session with an explicit override:
-
-```bash
-CODEX_COMPANION_VCS=git claude
-```
-
-Supported session values are `auto`, `git`, and `arc`.
-
 ### `/codex:adversarial-review`
 
 Runs a **steerable** review that questions the chosen implementation and design.
