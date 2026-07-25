@@ -21,16 +21,14 @@ they already have.
 
 ## Install
 
-This fork ships from `a-r-it/codex-plugin-cc` and keeps the upstream marketplace name
-`openai-codex`, so it cannot coexist with the official marketplace.
+This fork ships from `a-r-it/codex-plugin-cc` under the `advisor` marketplace.
 
 > [!NOTE]
-> If the official plugin is already installed, remove it first — otherwise the marketplace name
-> collides and this fork cannot be added:
+> The plugin is still named `codex`, so it would duplicate the `/codex:*` commands of the official
+> plugin. Uninstall the official one first:
 >
 > ```bash
 > claude plugin uninstall codex@openai-codex
-> claude plugin marketplace remove openai-codex
 > ```
 
 Add the marketplace in Claude Code:
@@ -42,7 +40,7 @@ Add the marketplace in Claude Code:
 Install the plugin:
 
 ```bash
-/plugin install codex@openai-codex
+/plugin install codex@advisor
 ```
 
 Reload plugins:
