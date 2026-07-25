@@ -18,21 +18,29 @@ they already have.
 - **ChatGPT subscription (incl. Free) or OpenAI API key.**
   - Usage will contribute to your Codex usage limits. [Learn more](https://developers.openai.com/codex/pricing).
 - **Node.js 18.18 or later**
-- **Git or Yandex Arc** for code review. Arc is optional and only needs to be
-  installed when reviewing an Arcadia project.
 
 ## Install
+
+This fork ships from `a-r-it/codex-plugin-cc` under the `advisor` marketplace.
+
+> [!NOTE]
+> The plugin is still named `codex`, so it would duplicate the `/codex:*` commands of the official
+> plugin. Uninstall the official one first:
+>
+> ```bash
+> claude plugin uninstall codex@openai-codex
+> ```
 
 Add the marketplace in Claude Code:
 
 ```bash
-/plugin marketplace add openai/codex-plugin-cc
+/plugin marketplace add a-r-it/codex-plugin-cc
 ```
 
 Install the plugin:
 
 ```bash
-/plugin install codex@openai-codex
+/plugin install codex@advisor
 ```
 
 Reload plugins:
@@ -78,9 +86,7 @@ One simple first run is:
 
 ### `/codex:review`
 
-Runs a normal Codex review on your current Git or Yandex Arc work. Git keeps
-Codex's native review targets; Arc reviews use a scoped custom target populated
-from the local Arc workspace.
+Runs a normal Codex review on your current work. It gives you the same quality of code review as running `/review` inside Codex directly.
 
 > [!NOTE]
 > Code review especially for multi-file changes might take a while. It's generally recommended to run it in the background.
@@ -88,7 +94,7 @@ from the local Arc workspace.
 Use it when you want:
 
 - a review of your current uncommitted changes
-- a review of your branch compared to a base branch like `main` or Arc `trunk`
+- a review of your branch compared to a base branch like `main`
 
 Use `--base <ref>` for branch review. It also supports `--wait` and `--background`. It is not steerable and does not take custom focus text. Use [`/codex:adversarial-review`](#codexadversarial-review) when you want to challenge a specific decision or risk area.
 
@@ -101,27 +107,6 @@ Examples:
 ```
 
 This command is read-only and will not perform any changes. When run in the background you can use [`/codex:status`](#codexstatus) to check on the progress and [`/codex:cancel`](#codexcancel) to cancel the ongoing task.
-
-#### Yandex Arc behavior
-
-Arc review is deliberately limited to the project directory that was open when
-the Claude session started:
-
-- automatic detection tries `arc info --json` before Git discovery;
-- working-tree review includes staged, changed, and untracked Arc state;
-- clean workspaces compare the current branch with the locally available
-  `trunk` ref using Arc merge-base semantics;
-- the plugin never runs `arc root` or `arc fetch`;
-- all Arc diffs use `--relative=.` from the opened project directory.
-
-If an Arcadia project contains a nested Git checkout and Git is the intended
-backend, start the Claude session with an explicit override:
-
-```bash
-CODEX_COMPANION_VCS=git claude
-```
-
-Supported session values are `auto`, `git`, and `arc`.
 
 ### `/codex:adversarial-review`
 
