@@ -18,8 +18,6 @@ they already have.
 - **ChatGPT subscription (incl. Free) or OpenAI API key.**
   - Usage will contribute to your Codex usage limits. [Learn more](https://developers.openai.com/codex/pricing).
 - **Node.js 18.18 or later**
-- **Git or Yandex Arc** for code review. Arc is optional and only needs to be
-  installed when reviewing an Arcadia project.
 
 ## Install
 
@@ -90,9 +88,7 @@ One simple first run is:
 
 ### `/codex:review`
 
-Runs a normal Codex review on your current Git or Yandex Arc work. Git keeps
-Codex's native review targets; Arc reviews use a scoped custom target populated
-from the local Arc workspace.
+Runs a normal Codex review on your current work. It gives you the same quality of code review as running `/review` inside Codex directly.
 
 > [!NOTE]
 > Code review especially for multi-file changes might take a while. It's generally recommended to run it in the background.
@@ -100,7 +96,7 @@ from the local Arc workspace.
 Use it when you want:
 
 - a review of your current uncommitted changes
-- a review of your branch compared to a base branch like `main` or Arc `trunk`
+- a review of your branch compared to a base branch like `main`
 
 Use `--base <ref>` for branch review. It also supports `--wait` and `--background`. It is not steerable and does not take custom focus text. Use [`/codex:adversarial-review`](#codexadversarial-review) when you want to challenge a specific decision or risk area.
 
