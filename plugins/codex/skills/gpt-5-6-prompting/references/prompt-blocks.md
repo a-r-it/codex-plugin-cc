@@ -1,7 +1,8 @@
 # Prompt Blocks
 
-Use these blocks selectively when composing Codex or GPT-5.4 prompts.
+Use these blocks selectively when composing complex Codex or GPT-5.6 prompts.
 Wrap each block in the XML tag shown in its heading.
+For a simple bounded request, prefer compact prose and omit blocks that merely restate the task.
 
 ## Core Wrapper
 

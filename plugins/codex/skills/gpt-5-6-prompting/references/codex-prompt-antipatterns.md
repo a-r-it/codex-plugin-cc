@@ -1,6 +1,6 @@
 # Codex Prompt Anti-Patterns
 
-Avoid these when prompting Codex or GPT-5.4.
+Avoid these when prompting Codex or GPT-5.6.
 
 ## Vague task framing
 
@@ -67,6 +67,68 @@ Better:
 <verification_loop>
 Before finalizing, verify that the answer matches the observed evidence and task requirements.
 </verification_loop>
+```
+
+## Over-structuring routine work
+
+Bad:
+
+```text
+Wrap every two-sentence task in a long stack of XML blocks, examples, reminders,
+and repeated process rules.
+```
+
+Better:
+
+```text
+Fix the null-state regression in the affected component. Preserve existing
+behavior elsewhere and run the focused tests before reporting the result.
+```
+
+## Using the wrong family tier
+
+Bad:
+
+```text
+Silently replace the user's requested Luna run with Sol because the task looks hard.
+```
+
+Better:
+
+```text
+Preserve the selected model. Make a Luna prompt bounded and explicit; if the task
+cannot be made reliable within that contract, report the mismatch instead of
+silently changing models.
+```
+
+## Blanket brevity
+
+Bad:
+
+```text
+Be extremely brief.
+```
+
+Better:
+
+```text
+Lead with the outcome. Keep the evidence, material caveats, validation result,
+and next action; trim repetition and optional background first.
+```
+
+## Defaulting to maximum effort
+
+Bad:
+
+```text
+Always use max reasoning so the answer is better.
+```
+
+Better:
+
+```text
+Preserve the requested or configured effort. Improve the success criteria,
+evidence contract, and verification loop before recommending a higher effort.
 ```
 
 ## Mixing unrelated jobs into one run
